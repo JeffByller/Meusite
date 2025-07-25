@@ -1,79 +1,162 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab de Jefferson</title>
+/* ---- CONFIGURAÇÕES GERAIS E FUNDO ---- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background: linear-gradient(-45deg, #0b1a38, #2c3e50, #23a6d5, #1e5f8a);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    padding: 40px 20px;
+}
 
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-    <main class="container">
-        <header class="profile-header">
-            <div class="profile-picture-container">
-                <img src="images/profile.jpg" alt="Foto de Jefferson Byller">
-            </div>
-            <div class="profile-info">
-                <h1>Jefferson Byller</h1>
-                <p class="subtitle">Analista de Redes | Graduando em Inteligência Artificial</p>
-            </div>
-        </header>
+/* ---- CONTAINER PRINCIPAL (EFEITO DE VIDRO) ---- */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(17, 25, 40, 0.75);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    padding: 40px;
+}
 
-        <section class="content-section">
-            <h2>Biografia</h2>
-            <p>Sou apaixonado por tecnologia desde a infância e trilhei meu caminho profissional com foco em redes e infraestrutura. Natural de Surubim-PE e atualmente morando em Campina Grande-PB, iniciei minha carreira nos bastidores dos provedores de internet, onde atuei por mais de seis anos e aprendi na prática os desafios e soluções da conectividade.</p>
+/* ---- SEÇÃO DO CABEÇALHO (FOTO E TÍTULO) ---- */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.125);
+    margin-bottom: 30px;
+}
 
-            <p>Hoje, como Analista de Redes na <strong>IXCsoft</strong>, trabalho na implementação e otimização de ambientes que envolvem OLTs, servidores Linux, bancos de dados e protocolos como BGP e OSPF. Tenho experiência sólida com redes GPON, virtualização, segurança de redes e sistemas baseados em Debian.</p>
+.profile-picture-container img {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    border: 3px solid #23a6d5;
+    object-fit: cover;
+}
 
-            <p>Sou formado em Análise e Desenvolvimento de Sistemas e atualmente curso <strong>Inteligência Artificial</strong> pela Unifacisa. Acredito no aprendizado contínuo como chave para soluções inteligentes e eficientes, e busco constantemente inovar e evoluir na área de tecnologia.</p>
-        </section>
+.profile-info h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    line-height: 1.2;
+}
 
-        <section class="content-section">
-            <h2>Tecnologias & Ferramentas</h2>
-            <ul class="skills-list">
-                <li>Redes de Computadores</li>
-                <li>Servidores Linux</li>
-                <li>OLTs & GPON</li>
-                <li>Concentradores (BGP, OSPF)</li>
-                <li>Bancos de Dados</li>
-                <li>Debian</li>
-                <li>Virtualização (Proxmox, Docker)</li>
-                <li>Segurança de Redes</li>
-            </ul>
-        </section>
+.profile-info .subtitle {
+    font-size: 1.2em;
+    font-weight: 300;
+    color: #bdc3c7;
+}
 
-        <section class="content-section">
-            <h2>Certificações</h2>
-            <ul class="skills-list">
-                <li>Redes de Computadores</li>
-                <li>Segurança de Redes</li>
-                <li>Administração Linux (Debian/Ubuntu)</li>
-                <li>Banco de Dados</li>
-                <li>Virtualização com Proxmox e Docker</li>
-            </ul>
-        </section>
+/* ---- SEÇÕES DE CONTEÚDO E HABILIDADES ---- */
+.content-section {
+    margin-bottom: 40px;
+}
 
-        <footer class="page-footer">
-            <p class="cta">Vamos trocar ideias e construir o futuro juntos?</p>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/jefferson-byller-647464249/" class="social-link" target="_blank">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://github.com/JeffByller" class="social-link" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.instagram.com/jeffgsan/" class="social-link" target="_blank">
-                    <i class="fab fa-instagram"></i> Instagram
-                </a>
-            </div>
-        </footer>
-    </main>
+.content-section h2 {
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-left: 4px solid #23a6d5;
+    padding-left: 15px;
+}
 
-</body>
-</html>
+.content-section p {
+    font-size: 1em;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.skills-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.skills-list li {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 400;
+    transition: background-color 0.3s ease;
+}
+
+.skills-list li:hover {
+    background-color: #23a6d5;
+}
+
+/* ---- RODAPÉ E LINKS SOCIAIS ---- */
+.page-footer {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.page-footer .cta {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links .social-link {
+    color: #fff;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.social-links .social-link:hover {
+    transform: translateY(-5px);
+    background-color: #23a6d5;
+}
+
+/* ---- AJUSTES PARA CELULARES (RESPONSIVIDADE) ---- */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 10px;
+    }
+    
+    .container {
+        padding: 25px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-info h1 {
+        font-size: 2em;
+    }
+    
+    .social-links {
+        flex-direction: column;
+    }
+}
