@@ -3,71 +3,737 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>Jefferson Byller - Network Analyst & AI Student</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== CONFIGURAÇÕES GLOBAIS ===== */
+        :root {
+            --primary-blue: #00d4ff;
+            --secondary-blue: #0077be;
+            --dark-bg: #0a0a0f;
+            --card-bg: rgba(15, 15, 25, 0.8);
+            --glass-bg: rgba(20, 20, 35, 0.85);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --accent-gradient: linear-gradient(135deg, #00d4ff, #0077be, #003d5c);
+            --neural-gradient: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ===== FUNDO ANIMADO COM PARTÍCULAS ===== */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 25% 25%, #001122 0%, #000510 50%, #000000 100%);
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+            opacity: 0.1;
+        }
+
+        .particle:nth-child(1) { width: 2px; height: 2px; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 3px; height: 3px; left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 1px; height: 1px; left: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 4px; height: 4px; left: 40%; animation-delay: 6s; }
+        .particle:nth-child(5) { width: 2px; height: 2px; left: 50%; animation-delay: 8s; }
+        .particle:nth-child(6) { width: 3px; height: 3px; left: 60%; animation-delay: 10s; }
+        .particle:nth-child(7) { width: 1px; height: 1px; left: 70%; animation-delay: 12s; }
+        .particle:nth-child(8) { width: 2px; height: 2px; left: 80%; animation-delay: 14s; }
+        .particle:nth-child(9) { width: 3px; height: 3px; left: 90%; animation-delay: 16s; }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotateX(0deg); }
+            100% { transform: translateY(-100vh) rotateX(360deg); }
+        }
+
+        /* ===== CONTAINER PRINCIPAL ===== */
+        .main-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            z-index: 1;
+        }
+
+        /* ===== NAVEGAÇÃO FUTURISTA ===== */
+        .nav-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 50px;
+            padding: 10px 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue);
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* ===== CABEÇALHO HEROICO ===== */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 100px 20px 50px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            background: var(--neural-gradient);
+            padding: 4px;
+            margin: 0 auto 30px;
+            position: relative;
+            animation: profileGlow 3s ease-in-out infinite;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        @keyframes profileGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.6); }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleShine 2s ease-in-out infinite;
+        }
+
+        @keyframes titleShine {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .typing-animation {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary-blue);
+            border-right: 2px solid var(--primary-blue);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-right-color: transparent; }
+            51%, 100% { border-right-color: var(--primary-blue); }
+        }
+
+        /* ===== CARTÕES DE SEÇÃO ===== */
+        .section-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: var(--accent-gradient);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .section-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 30px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        /* ===== SKILLS INTERATIVAS ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .skill-category {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: scale(1.02);
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skills-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary-blue);
+            color: var(--dark-bg);
+            transform: translateY(-2px);
+        }
+
+        /* ===== BIOGRAFIA MODERNA ===== */
+        .bio-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* ===== BOTÕES DE AÇÃO ===== */
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            text-decoration: none;
+            padding: 13px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+        }
+
+        /* ===== RODAPÉ FUTURISTA ===== */
+        .footer-section {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            margin-top: 80px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: var(--glass-bg);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--primary-blue);
+            color: var(--dark-bg);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .nav-bar {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 20px auto;
+                justify-content: center;
+            }
+
+            .hero-section {
+                padding: 50px 20px;
+            }
+
+            .section-card {
+                padding: 25px;
+                margin: 40px 0;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* ===== EFEITOS ESPECIAIS ===== */
+        .glow-effect {
+            position: relative;
+        }
+
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            border-radius: inherit;
+            filter: blur(10px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        /* ===== SCROLL INDICATOR ===== */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-gradient);
+            transform-origin: left;
+            transform: scaleX(0);
+            z-index: 1001;
+        }
+    </style>
 </head>
 <body>
+    <!-- Indicador de Scroll -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
 
-    <main class="container">
-        <header class="profile-header">
-            <div class="profile-picture-container">
-                <img src="images/jeff.jpg" alt="Foto de Jefferson Byller">
+    <!-- Fundo Animado -->
+    <div class="background-animation">
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <!-- Navegação -->
+    <nav class="nav-bar">
+        <a href="#inicio" class="nav-link">Início</a>
+        <a href="#sobre" class="nav-link">Sobre</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#contato" class="nav-link">Contato</a>
+    </nav>
+
+    <div class="main-container">
+        <!-- Seção Hero -->
+        <section class="hero-section" id="inicio">
+            <div class="hero-content">
+                <div class="profile-image">
+                    <img src="images/jeff.png" alt="Jefferson Byller" />
+                </div>
+                
+                <h1 class="hero-title">Jefferson Byller</h1>
+                
+                <p class="hero-subtitle">
+                    <span class="typing-animation">Network Analyst → AI Student</span>
+                </p>
+                
+                <div class="action-buttons">
+                    <a href="#sobre" class="btn-primary">
+                        <i class="fas fa-user"></i> Conheça minha jornada
+                    </a>
+                    <a href="#contato" class="btn-secondary">
+                        <i class="fas fa-envelope"></i> Vamos conversar
+                    </a>
+                </div>
             </div>
-            <div class="profile-info">
-                <h1>Jefferson Byller Gomes dos Santos</h1>
-                <p class="subtitle">Analista de Redes | Graduando em Inteligência Artificial</p>
-            </div>
-        </header>
-
-        <section class="content-section">
-            <h2>Biografia</h2>
-            <p>Sou apaixonado por tecnologia desde a infância e trilhei meu caminho profissional com foco em redes e infraestrutura. Natural de Surubim-PE e atualmente morando em Campina Grande-PB, iniciei minha carreira nos bastidores dos provedores de internet, onde atuei por mais de seis anos e aprendi na prática os desafios e soluções da conectividade.</p>
-
-            <p>Hoje, como Analista de Redes, trabalho na implementação e otimização de ambientes que envolvem OLTs, servidores Linux, bancos de dados e protocolos de roteamento. Tenho experiência sólida com redes GPON, virtualização, segurança de redes e sistemas baseados em Linux.</p>
-
-            <p>Sou formado em Análise e Desenvolvimento de Sistemas e atualmente curso <strong>Inteligência Artificial</strong> pela Unifacisa. Acredito no aprendizado contínuo como chave para soluções inteligentes e eficientes, e busco constantemente inovar e evoluir na área de tecnologia.</p>
         </section>
 
-        <section class="content-section">
-            <h2>Tecnologias & Ferramentas</h2>
-            <ul class="skills-list">
-                <li>Redes de Computadores</li>
-                <li>Servidores Linux</li>
-                <li>OLTs & GPON</li>
-                <li>Concentradores</li>
-                <li>Bancos de Dados</li>
-                <li>Virtualização (Proxmox, VWare)</li>
-            </ul>
+        <!-- Seção Sobre -->
+        <section class="section-card fade-in" id="sobre">
+            <h2 class="section-title">Sobre Mim</h2>
+            <p class="bio-text">
+                Da infraestrutura de <span class="highlight">redes físicas</span> para as <span class="highlight">redes neurais</span> - essa é minha transição tecnológica atual. Natural de Surubim-PE e baseado em Campina Grande-PB, venho construindo minha carreira há mais de 6 anos no universo das telecomunicações.
+            </p>
+            <p class="bio-text">
+                Como <span class="highlight">Analista de Redes</span>, domino desde OLTs e GPON até virtualização e sistemas Linux. Agora, cursando <span class="highlight">Inteligência Artificial</span> na Unifacisa, estou conectando minha experiência em infraestrutura com o futuro da tecnologia inteligente.
+            </p>
+            <p class="bio-text">
+                Acredito que a experiência em redes me dá uma perspectiva única sobre como os dados fluem - algo essencial para entender como as IAs processam informações. <span class="highlight">Do backbone à mente artificial</span>, a jornada continua.
+            </p>
         </section>
 
-   <!--   <section class="content-section">
-            <h2>Certificações</h2>
-            <ul class="skills-list">
-                <li>Redes de Computadores</li>
-            </ul>
-        </section> -->
+        <!-- Seção Skills -->
+        <section class="section-card fade-in" id="skills">
+            <h2 class="section-title">Expertise & Tecnologias</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-network-wired"></i>
+                        Redes & Infraestrutura
+                    </h3>
+                    <ul class="skills-list">
+                        <li class="skill-tag">GPON & OLTs</li>
+                        <li class="skill-tag">Concentradores</li>
+                        <li class="skill-tag">Protocolos de Roteamento</li>
+                        <li class="skill-tag">Segurança de Redes</li>
+                        <li class="skill-tag">Monitoramento</li>
+                    </ul>
+                </div>
 
-        <footer class="page-footer">
-            <p class="cta">Vamos trocar uma ideia?</p>
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fab fa-linux"></i>
+                        Sistemas & DevOps
+                    </h3>
+                    <ul class="skills-list">
+                        <li class="skill-tag">Linux Administration</li>
+                        <li class="skill-tag">Proxmox</li>
+                        <li class="skill-tag">VMware</li>
+                        <li class="skill-tag">Bancos de Dados</li>
+                        <li class="skill-tag">Shell Scripting</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-brain"></i>
+                        Inteligência Artificial
+                    </h3>
+                    <ul class="skills-list">
+                        <li class="skill-tag">Python</li>
+                        <li class="skill-tag">Machine Learning</li>
+                        <li class="skill-tag">Redes Neurais</li>
+                        <li class="skill-tag">Deep Learning</li>
+                        <li class="skill-tag">LLMs (em estudo)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-code"></i>
+                        Desenvolvimento
+                    </h3>
+                    <ul class="skills-list">
+                        <li class="skill-tag">Python</li>
+                        <li class="skill-tag">JavaScript</li>
+                        <li class="skill-tag">APIs REST</li>
+                        <li class="skill-tag">Git & GitHub</li>
+                        <li class="skill-tag">Análise de Sistemas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Contato -->
+        <footer class="footer-section" id="contato">
+            <h2 class="section-title">Vamos conectar ideias?</h2>
+            <p class="bio-text">
+                Seja para discutir redes, IA ou oportunidades de colaboração.<br>
+                Estou sempre aberto a novas conexões e projetos desafiadores.
+            </p>
+
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/jefferson-byller-647464249/" class="social-link" target="_blank">
-                    <i class="fab fa-linkedin"></i> LinkedIn
+                <a href="https://www.linkedin.com/in/jefferson-byller-647464249/" class="social-link" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://github.com/JeffByller" class="social-link" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
+                <a href="https://github.com/JeffByller" class="social-link" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.instagram.com/jeffgsan/" class="social-link" target="_blank">
-                    <i class="fab fa-instagram"></i> Instagram
+                <a href="https://www.instagram.com/jeffgsan/" class="social-link" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:jefferson@exemplo.com" class="social-link" title="Email">
+                    <i class="fas fa-envelope"></i>
                 </a>
             </div>
-        </footer>
-    </main>
 
+            <p style="margin-top: 40px; color: var(--text-secondary); font-size: 0.9rem;">
+                © 2024 Jefferson Byller - Network Analyst & AI Student
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Animação de scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Indicador de progresso do scroll
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height);
+            document.getElementById('scrollIndicator').style.transform = `scaleX(${scrolled})`;
+        });
+
+        // Animação de fade-in ao scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Efeito de digitação para o subtítulo
+        const typingElement = document.querySelector('.typing-animation');
+        const text = 'Network Analyst → AI Student';
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                typingElement.textContent = text.substring(0, i + 1);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                setTimeout(() => {
+                    i = 0;
+                    typingElement.textContent = '';
+                    typeWriter();
+                }, 3000);
+            }
+        }
+
+        // Iniciar animação após carregamento
+        setTimeout(typeWriter, 1000);
+
+        // Parallax sutil para as partículas
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach((particle, index) => {
+                const speed = 0.1 + (index * 0.02);
+                particle.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
 </body>
 </html>
